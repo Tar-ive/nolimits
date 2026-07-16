@@ -142,7 +142,7 @@ private struct ProviderWidgetView: View {
                 .font(.caption.weight(.semibold)).foregroundStyle(.white)
             if windows.isEmpty {
                 Spacer()
-                Text("Open NoLimits to refresh").font(.caption2).foregroundStyle(.secondary)
+                Text("Open NoLimits to refresh").font(.caption2).foregroundStyle(.white.opacity(0.58))
                 Spacer()
             } else if provider == .codex && family == .systemSmall {
                 HStack(spacing: 12) { ForEach(windows) { Ring(window: $0) } }
@@ -194,7 +194,7 @@ private struct LimitBar: View {
             ProgressView(value: remaining, total: 100).tint(remaining < 15 ? .red : .blue)
             if let resetText {
                 Label("Resets \(resetText)", systemImage: "arrow.clockwise")
-                    .font(.system(size: 8)).foregroundStyle(.secondary).frame(maxWidth: .infinity, alignment: .leading)
+                    .font(.system(size: 8)).foregroundStyle(.white.opacity(0.58)).frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }
@@ -228,7 +228,7 @@ private struct Ring: View {
             if let provider {
                 ProviderLogo(provider: provider, size: 14, tint: [.codex, .cursor].contains(provider) ? .white : nil)
             }
-            Text(shortLabel).font(.caption2.weight(.medium)).foregroundStyle(.secondary).lineLimit(1)
+            Text(shortLabel).font(.caption2.weight(.medium)).foregroundStyle(.white.opacity(0.62)).lineLimit(1)
         }.frame(maxWidth: .infinity)
     }
 

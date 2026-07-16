@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NoLimits keeps Claude, Codex, Cursor, Antigravity, and OpenCode usage visible on iPhone and WidgetKit.">
+  <meta property="og:title" content="NoLimits — know what is left">
+  <meta property="og:description" content="A private iPhone dashboard and WidgetKit companion for your AI usage limits.">
+  <meta property="og:image" content="/assets/home-widget.png">
+  <meta property="og:url" content="https://nolimits-murex.vercel.app">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>NoLimits — AI usage, always in view</title>
+  <link rel="canonical" href="https://nolimits-murex.vercel.app">
+  <link rel="icon" href="/assets/app-icon.png">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="#top" aria-label="NoLimits home">
+      <img src="/assets/app-icon.png" alt="">
+      <span>NoLimits</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#widgets">Widgets</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/Tar-ive/nolimits">GitHub <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Private AI usage for iPhone</p>
+        <h1>Know what’s left.<br><span>Before it stops you.</span></h1>
+        <p class="lede">One calm view of Claude, Codex, Cursor, Antigravity, and OpenCode Go—powered by your own Railway and Upstash deployment.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/Tar-ive/nolimits">View source on GitHub <span>↗</span></a>
+          <a class="button quiet" href="#screens">See the real app <span>↓</span></a>
+        </div>
+        <div class="provider-strip" aria-label="Supported providers">
+          <img src="/assets/claude.svg" alt="Claude">
+          <img src="/assets/codex.svg" alt="Codex">
+          <img src="/assets/cursor.svg" alt="Cursor">
+          <img src="/assets/antigravity.svg" alt="Antigravity">
+          <img src="/assets/opencode.svg" alt="OpenCode">
+        </div>
+      </div>
+
+      <div class="product-stage" id="screens" aria-label="Real NoLimits simulator captures">
+        <div class="wash wash-blue"></div>
+        <div class="wash wash-coral"></div>
+        <figure class="capture app-capture">
+          <img src="/assets/app-dashboard.png" alt="NoLimits running in the iOS Simulator with live Claude, Codex, and Cursor usage">
+          <figcaption>Actual iOS Simulator capture</figcaption>
+        </figure>
+        <figure class="capture widget-capture">
+          <img src="/assets/home-widget.png" alt="Actual NoLimits WidgetKit overview for five providers">
+          <figcaption>Actual WidgetKit capture</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="proof" id="widgets">
+      <div class="shell proof-grid">
+        <div class="section-copy">
+          <p class="eyebrow">All five providers</p>
+          <h2>Your limits,<br>always in view.</h2>
+          <p>The medium Home Screen widget puts the most useful limit from every provider in one glance. Lock Screen families are included in the same WidgetKit extension.</p>
+        </div>
+        <div class="widget-proof">
+          <img src="/assets/home-widget.png" alt="NoLimits five-provider Home Screen widget">
+          <div class="proof-note"><strong>Real UI.</strong> No generated phone screens or invented status bars.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features shell" id="features">
+      <div class="section-copy compact">
+        <p class="eyebrow">Built around your Mac</p>
+        <h2>Your accounts stay where they already live.</h2>
+      </div>
+      <div class="feature-grid">
+        <article><span>01</span><h3>Sync on Mac</h3><p>Read the provider sessions already present on your laptop and send only the required refresh material to your private store.</p></article>
+        <article><span>02</span><h3>Store in Upstash</h3><p>Redis holds OAuth refresh data and short-lived usage snapshots. Credentials are never bundled into the iPhone app.</p></article>
+        <article><span>03</span><h3>Refresh on Railway</h3><p>The server renews access and normalizes every provider’s limits into one small response format.</p></article>
+        <article><span>04</span><h3>Read on iPhone</h3><p>SwiftUI and WidgetKit render the same live snapshot across the app, Home Screen, and Lock Screen families.</p></article>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <div class="shell privacy-grid">
+        <div>
+          <p class="eyebrow light">A private connector</p>
+          <h2>Your infrastructure.<br>Your accounts.<br>Your limits.</h2>
+        </div>
+        <div class="privacy-copy">
+          <p>NoLimits is designed for a personal Railway and Upstash deployment. The phone does not need your Claude, Codex, Cursor, Antigravity, or OpenCode login.</p>
+          <p>The public repository contains example environment names only. OAuth secrets stay in Railway and refresh material stays in Upstash.</p>
+          <a class="button inverted" href="https://github.com/Tar-ive/nolimits#how-it-works">Read the architecture <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing shell">
+      <img class="closing-icon" src="/assets/app-icon.png" alt="NoLimits app icon">
+      <p class="eyebrow">NoLimits for iPhone</p>
+      <h2>Stop guessing.<br>Keep building.</h2>
+      <p>SwiftUI app, real widgets, Railway server, and Upstash sync in one open repository.</p>
+      <a class="button primary" href="https://github.com/Tar-ive/nolimits">Open on GitHub <span>↗</span></a>
+      <small>App Store release comes after device validation.</small>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <a class="brand" href="#top"><img src="/assets/app-icon.png" alt=""><span>NoLimits</span></a>
+    <span>Private AI usage, always in view.</span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</body>
+</html>

@@ -4,6 +4,18 @@ NoLimits is a private SwiftUI usage dashboard for Claude, Codex, Cursor,
 Antigravity, and OpenCode Go. It includes real WidgetKit widgets for the Home
 Screen and Lock Screen.
 
+**[View the live website](https://nolimits-murex.vercel.app)**
+
+<p align="center">
+  <img src="screenshots/app-dashboard.png" width="320" alt="NoLimits running in the iOS Simulator">
+</p>
+
+<p align="center">
+  <img src="screenshots/home-widget.png" width="760" alt="NoLimits five-provider Home Screen widget">
+</p>
+
+These are direct iOS Simulator and WidgetKit captures, not generated phone mockups.
+
 ## How it works
 
 1. `npm run auth:sync-mac` reads the provider sessions already present on your Mac.
