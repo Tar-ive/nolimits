@@ -1,0 +1,9 @@
+.git
+.env*
+node_modules
+dist
+captures
+DerivedData*
+ios/build
+*.xcarchive
+*.ipa

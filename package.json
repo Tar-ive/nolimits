@@ -1,0 +1,52 @@
+{
+  "name": "nolimits",
+  "version": "1.0.0",
+  "description": "Private AI usage dashboard, iOS widgets, and Railway connector",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "bun --watch src/server.ts",
+    "start": "bun dist/server.js",
+    "start:dev": "tsx watch src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "vercel-build": "npm run build",
+    "devin:login": "bun scripts/devin-auth-cli.ts login",
+    "devin:logout": "bun scripts/devin-auth-cli.ts logout",
+    "devin:status": "bun scripts/devin-auth-cli.ts status",
+    "auth:sync-mac": "bun scripts/sync-mac-auth.ts",
+    "test:devin": "bun scripts/test-devin-proxy.ts"
+  },
+  "keywords": [
+    "cursor",
+    "claude",
+    "anthropic",
+    "openai",
+    "proxy",
+    "api",
+    "connector",
+    "code-editor",
+    "claude-pro",
+    "claude-max",
+    "oauth"
+  ],
+  "author": "Tar-ive",
+  "license": "MIT",
+  "dependencies": {
+    "@hono/node-server": "^1.13.5",
+    "@upstash/redis": "^1.35.1",
+    "hono": "^4.12.30",
+    "protobufjs": "^7.4.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.18",
+    "@types/node": "^20.0.0",
+    "@types/ws": "^8.5.13",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

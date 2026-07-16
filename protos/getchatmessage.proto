@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+// Reverse-engineered from a single live capture of Devin CLI 3000.1.27 talking to
+// server.codeium.com (Connect-RPC). Field NUMBERS are authoritative (read off the
+// wire). Field NAMES are inferred from observed values and may need refinement.
+// Unknown scalar fields are kept with best-guess types + the sample value seen.
+//
+// RPC:  exa.api_server_pb.ApiServerService/GetChatMessage
+// Framing (request + response): Connect streaming, content-type
+//   application/connect+proto  -> 5-byte frame header (1 flag byte + uint32 BE len)
+//   then the protobuf below. flag & 0x02 = end-of-stream JSON trailer (not protobuf).
+// Auth header: `Authorization: Basic devin-session-token$<JWT>`
+package exa.api_server_pb;
+
+// ---------------------------------------------------------------------------
+// REQUEST
+// ---------------------------------------------------------------------------
+message GetChatMessageRequest {
+  ClientInfo   client            = 1;
+  string       system_prompt     = 2;   // 20 KB Devin system prompt
+  repeated ChatMessage messages  = 3;   // conversation history
+  int64        field_7           = 7;   // =5 (agent mode? unverified)
+  GenerationConfig gen_config    = 8;
+  repeated ToolDef tools         = 10;  // 24 tool definitions
+  string       field_15          = 15;  // " $<uuid> " (padded)
+  string       turn_id           = 16;  // uuid
+  int64        field_20          = 20;  // =1
+  string       model             = 21;  // e.g. "swe-1-6-slow"
+  string       request_id        = 22;  // uuid
+}
+
+message ClientInfo {
+  string product        = 1;   // "chisel" (Devin CLI internal codename)
+  string version        = 2;   // "3000.1.27"
+  string session_token  = 3;   // "devin-session-token$<JWT>"
+  string language       = 4;   // "en"
+  string os             = 5;   // "mac"
+  string version_2      = 7;   // "3000.1.27"
+  string product_2      = 12;  // "chisel"
+  string machine_id     = 31;  // hex device id
+}
+
+message ChatMessage {
+  string message_id = 1;   // uuid
+  int64  role       = 2;   // 1=user, 2=assistant, 4=tool_result (all observed); 3=system (guess)
+  string content    = 3;   // message text (may wrap <system_info>, <rules>, etc.)
+}
+
+message GenerationConfig {
+  int64   field_1        = 1;  // =1
+  int64   max_context    = 2;  // =128000
+  int64   field_3        = 3;  // =400
+  fixed64 field_5        = 5;  // likely double (temperature/top_p)
+  int64   top_k          = 7;  // =40
+  fixed64 field_8        = 8;  // likely double
+}
+
+message ToolDef {
+  string name        = 1;   // e.g. "ask_user_question"
+  string description  = 2;
+  string json_schema = 3;   // JSON-encoded parameter schema
+}
+
+// ---------------------------------------------------------------------------
+// RESPONSE  (server-streamed; each frame is ONE of these, deltas accumulate).
+// A frame carries at most one of: reasoning (9), content (3+4), tool call (6),
+// or the terminal stats block (28). Shared envelope fields appear on every frame.
+// The stream terminates with a Connect end-of-stream JSON trailer (flag&0x02),
+// e.g. {"error":{"code":"permission_denied",...}} or empty {} on success.
+// ---------------------------------------------------------------------------
+message GetChatMessageResponse {
+  string    bot_id         = 1;   // "bot-<uuid>"  (constant for the turn)
+  Timestamp timestamp      = 2;
+  string    content_delta  = 3;   // assistant REPLY text delta (with content_index=4)
+  int64     content_index  = 4;   // sequence/block index for content_delta (1..N)
+  int64     field_5        = 5;   // rare marker (seen 10, 2) — part boundary? unverified
+  ToolCallDelta tool_call  = 6;   // streamed tool call (id+name first, then arg chunks)
+  string    metadata       = 7;   // packed: model name + x-request-id (nested bytes)
+  string    reasoning_delta = 9;  // assistant THINKING text delta
+  fixed64   field_12       = 12;  // per-frame double/hash (varies each frame)
+  ResponseStats stats      = 28;  // terminal frame: end-of-turn statistics
+  string    response_id    = 17;  // uuid (matches bot_id suffix)
+}
+
+// Tool call streams across frames: the first frame sets call_id + tool_name,
+// subsequent frames append args_chunk to build the JSON arguments string.
+message ToolCallDelta {
+  string call_id    = 1;   // "call_<hex>"
+  string tool_name  = 2;   // e.g. "exec", "read"
+  string args_chunk = 3;   // JSON fragment; concatenate across frames -> full args
+}
+
+// Terminal frame: display statistics shown at end of turn.
+message ResponseStats {
+  string title = 1;                 // "Response Statistics"
+  repeated StatEntry entries = 2;
+}
+message StatEntry {
+  StatLabel labelled = 4;
+  string    key      = 5;           // "agent_messages", "model", ...
+  string    packed   = 3;           // some entries pack label+value here
+}
+message StatLabel {
+  string label     = 1;             // "Agent messages"
+  fixed32 value    = 2;             // numeric (float32)
+  string  unit_one = 3;             // " message"
+  string  unit_many = 4;            // " messages"
+}
+
+// google.protobuf.Timestamp shape (seconds + nanos)
+message Timestamp {
+  int64 seconds = 1;
+  int64 nanos   = 2;
+}

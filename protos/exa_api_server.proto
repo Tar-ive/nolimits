@@ -1,0 +1,183 @@
+syntax = "proto3";
+
+package exa.api_server_pb;
+
+message Msg1 {
+  string field_1 = 1;  // e.g. "chisel"
+  string field_2 = 2;  // e.g. "3000.1.27"
+  string field_3 = 3;  // e.g. "devin-session-token$eyJhbGciOiJIUzI1NiIsInR5cCI6Ik"
+  string field_4 = 4;  // e.g. "en"
+  string field_5 = 5;  // e.g. "mac"
+  string field_7 = 7;  // e.g. "3000.1.27"
+  string field_12 = 12;  // e.g. "chisel"
+  string field_31 = 31;  // e.g. "fc6028681132245c3fead26eb51b4149f5c8b0c19881a5494a"
+}
+
+message Msg2 {
+  string field_1 = 1;  // e.g. "24f3a6d7-948d-41e8-a65a-e236fefff079"
+  int64 field_2 = 2;  // e.g. 1
+  string field_3 = 3;  // e.g. "<system_info> The following information is automat"
+}
+
+message Msg3 {
+  int64 field_1 = 1;  // e.g. 1
+  int64 field_2 = 2;  // e.g. 128000
+  int64 field_3 = 3;  // e.g. 400
+  fixed64 field_5 = 5;
+  int64 field_7 = 7;  // e.g. 40
+  fixed64 field_8 = 8;
+}
+
+message Msg4 {
+  string field_1 = 1;  // e.g. "ask_user_question"
+  string field_2 = 2;  // e.g. "Present multiple-choice questions to the user and "
+  string field_3 = 3;  // e.g. "{"additionalProperties":false,"required":["questio"
+}
+
+message GetChatMessageRequest {
+  Msg1 field_1 = 1;
+  string field_2 = 2;  // e.g. "You are Devin, an interactive command line agent f"
+  repeated Msg2 field_3 = 3;
+  int64 field_7 = 7;  // e.g. 5
+  Msg3 field_8 = 8;
+  repeated Msg4 field_10 = 10;
+  string field_15 = 15;  // e.g. " $2e83decc-fc00-46ee-9ef0-ad0af5e2ed1a "
+  string field_16 = 16;  // e.g. "936f5e9d-77cb-4666-bdab-5934e712c073"
+  int64 field_20 = 20;  // e.g. 1
+  string field_21 = 21;  // e.g. "swe-1-6-slow"
+  string field_22 = 22;  // e.g. "847bdb78-9416-4bb7-8ba4-0a2ed5eb2e3f"
+}
+
+message Msg6 {
+  int64 field_1 = 1;  // e.g. 1783802840
+  int64 field_2 = 2;  // e.g. 168213273
+}
+
+message GetChatMessageResponse {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  string field_7 = 7;  // e.g. "0B/ x-request-idorjYpXx-6z2FuN-9305f4ea-aws_uw"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg8 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  string field_7 = 7;  // e.g. "0Jswe-1-6-slow"
+  string field_9 = 9;  // e.g. "The"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg9 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  string field_3 = 3;  // e.g. "I'll list the"
+  int64 field_4 = 4;  // e.g. 5
+  string field_7 = 7;  // e.g. "0Jswe-1-6-slow"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg10 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  string field_6 = 6;  // e.g. " call_b70cdc8324124bf09984d403exec"
+  string field_7 = 7;  // e.g. "0Jswe-1-6-slow"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg11 {
+  string field_3 = 3;  // e.g. "{"
+}
+
+message Msg12 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  Msg11 field_6 = 6;
+  string field_7 = 7;  // e.g. "0Jswe-1-6-slow"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg13 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  int64 field_5 = 5;  // e.g. 10
+  string field_7 = 7;  // e.g. "0Jswe-1-6-slow"
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg14 {
+  int64 field_2 = 2;  // e.g. 13577
+  int64 field_3 = 3;  // e.g. 134
+  int64 field_6 = 6;  // e.g. 6
+  string field_8 = 8;  // e.g. " x-request-idorjYpXx-6z2FuN-9305f4ea-aws_uw2"
+  string field_9 = 9;  // e.g. "swe-1-6-slow"
+}
+
+message Msg15 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  Msg14 field_7 = 7;
+  fixed64 field_12 = 12;
+  string field_17 = 17;  // e.g. "bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+}
+
+message Msg16 {
+  string field_1 = 1;  // e.g. "Agent messages"
+  fixed32 field_2 = 2;
+  string field_3 = 3;  // e.g. " message"
+  string field_4 = 4;  // e.g. " messages"
+}
+
+message Msg17 {
+  Msg16 field_4 = 4;
+  string field_5 = 5;  // e.g. "agent_messages"
+}
+
+message Msg18 {
+  string field_3 = 3;  // e.g. " ModelSWE-1.6 Slow"
+  string field_5 = 5;  // e.g. "model"
+}
+
+message Msg19 {
+  string field_1 = 1;  // e.g. "Response Statistics"
+  repeated Msg17 field_2 = 2;
+}
+
+message Msg20 {
+  string field_1 = 1;  // e.g. "bot-bf81bb63-d085-4bc9-8579-5bc16c18c9cf"
+  Msg6 field_2 = 2;
+  Msg19 field_28 = 28;
+}
+
+message Msg21 {
+  Msg1 field_1 = 1;
+  string field_2 = 2;  // e.g. "You are a session title generator. Given the user'"
+  string field_3 = 3;  // e.g. " $bd014bf3-c8a3-4ff4-8289-ca18ab56b8a69list the"
+  int64 field_7 = 7;  // e.g. 5
+  Msg3 field_8 = 8;
+  string field_15 = 15;  // e.g. " $2e83decc-fc00-46ee-9ef0-ad0af5e2ed1a"
+  string field_16 = 16;  // e.g. "936f5e9d-77cb-4666-bdab-5934e712c073"
+  int64 field_20 = 20;  // e.g. 1
+  string field_21 = 21;  // e.g. "swe-1-6-fast"
+}
+
+message Msg22 {
+  string field_1 = 1;  // e.g. "251c7564-75d3-49c9-aec1-d3a2883f4943"
+  int64 field_2 = 2;  // e.g. 2
+  string field_3 = 3;  // e.g. "I'll list the files in the current directory and r"
+  repeated string field_6 = 6;  // e.g. " call_b70cdc8324124bf09984d403exec{"command":"
+  string field_11 = 11;  // e.g. "The user wants me to: 1. List the files in the cur"
+}
+
+message Msg23 {
+  string field_1 = 1;  // e.g. "73f6f54f-fb30-46e9-b84d-ee8099fc156c"
+  int64 field_2 = 2;  // e.g. 4
+  string field_3 = 3;  // e.g. "Output from command in shell b625e3: total 216 drw"
+  string field_7 = 7;  // e.g. "call_b70cdc8324124bf09984d403"
+}

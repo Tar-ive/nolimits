@@ -1,0 +1,84 @@
+name: NoLimits
+options:
+  bundleIdPrefix: com.tarive
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: KJH66PARX6
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: 5.0
+    MARKETING_VERSION: 1.0
+    CURRENT_PROJECT_VERSION: 1
+    VERSIONING_SYSTEM: apple-generic
+targets:
+  NoLimits:
+    type: application
+    platform: iOS
+    sources:
+      - ConnectorLimits
+      - path: BrandAssets.xcassets
+    info:
+      path: ConnectorLimits/Info.plist
+      properties:
+        CFBundleDisplayName: NoLimits
+        CFBundleURLTypes:
+          - CFBundleURLName: com.tarive.nolimits
+            CFBundleURLSchemes: [nolimits]
+        UILaunchScreen: {}
+        NSAppTransportSecurity:
+          NSAllowsLocalNetworking: true
+        NSLocalNetworkUsageDescription: Connect to your Mac-hosted limits connector for device testing.
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tarive.nolimits
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_ENTITLEMENTS: ConnectorLimits/ConnectorLimits.entitlements
+    dependencies:
+      - target: NoLimitsWidget
+    scheme:
+      testTargets: [NoLimitsTests, NoLimitsUITests]
+  NoLimitsWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - ConnectorLimitsWidget
+      - path: ConnectorLimits/APIClient.swift
+      - path: ConnectorLimits/KeychainStore.swift
+      - path: ConnectorLimits/Models.swift
+      - path: BrandAssets.xcassets
+    info:
+      path: ConnectorLimitsWidget/Info.plist
+      properties:
+        CFBundleDisplayName: NoLimits
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tarive.nolimits.widgets
+        CODE_SIGN_ENTITLEMENTS: ConnectorLimitsWidget/ConnectorLimitsWidget.entitlements
+        APPLICATION_EXTENSION_API_ONLY: YES
+        SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: "1"
+  NoLimitsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [ConnectorLimitsTests]
+    dependencies:
+      - target: NoLimits
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tarive.nolimits.tests
+        GENERATE_INFOPLIST_FILE: YES
+  NoLimitsUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [NoLimitsUITests]
+    dependencies:
+      - target: NoLimits
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tarive.nolimits.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: NoLimits
